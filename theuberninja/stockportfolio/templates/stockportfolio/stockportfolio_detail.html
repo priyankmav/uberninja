@@ -1,0 +1,33 @@
+{% extends "stockportfolio/base.html" %}
+{% block content %}
+    <div>
+    <h1 class="mb-3">Portfolio - {{ object.stock_portfolio_name }} </h1>
+    <table>
+        <thead>
+          <tr>
+            <th>Name</th>
+            <th>Ticker</th>
+            <th>Price</th>
+            <th>Units</th>
+            <!-- Add other header columns as needed -->
+          </tr>
+        </thead>
+        <tbody>
+          {% for investment in investments %}
+            <tr>
+              <td>{{ investment.investment_name }}</td>
+              <td>{{ investment.investment_ticker }}</td>
+              <td>{{ investment.investment_price }}</td>
+              <td>{{ investment.investment_units }}</td>
+              <td><a class = "btn btn-secondary btn-sm mt-1 mt-1" href="{% url 'investment-update' investment.id %}">Update</a></td>
+              <td><a class = "btn btn-danger btn-sm mt-1 mt-1" href="{% url 'investment-delete' investment.id %}">Delete</a></td>
+              <!-- Add other data columns as needed -->
+            </tr>
+          {% endfor %}
+        </tbody>
+      </table>
+    </div>
+    <div>
+      <a class="btn btn-secondary btn-sm mt-1 mt-1" href="{% url 'investment-create' object.pk %}">Add Investment</a>
+    </div>
+{% endblock content %}

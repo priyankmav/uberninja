@@ -1,0 +1,11 @@
+{% extends "stockportfolio/base.html" %}
+{% block content %}
+    <ul>
+        {% for portfolio in portfolios %}
+          <li>
+            <strong>Portfolio Name:</strong><a class="mr-2" href="{% url 'stockportfolio-detail' portfolio.pk %}"> {{ portfolio.stock_portfolio_name }}</a><br>
+            <strong>Portfolio User:</strong> {{ portfolio.stock_portfolio_user }}<br>
+          </li>
+        {% endfor %}
+      </ul>
+{% endblock content %}

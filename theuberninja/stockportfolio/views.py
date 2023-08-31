@@ -104,9 +104,13 @@ class InvestmentCreateView(LoginRequiredMixin, UserPassesTestMixin, CreateView):
         return reverse_lazy('stockportfolio-detail', kwargs={'pk': investment_to_portfolio.pk }) 
     
     def test_func(self):
-        investment = self.get_object()
-        stockportfolio = StockPortfolio.objects.get(pk=investment.investment_to_portfolio.pk)
-        if self.request.user == stockportfolio.stock_portfolio_user:
+        #investment = self.get_object()
+        #stockportfolio = StockPortfolio.objects.get(pk=investment.investment_to_portfolio.pk)
+        #investment = self.get_object()
+        #stockportfolio = StockPortfolio.objects.get(pk=investment.investment_to_portfolio.pk)
+        portfolio_id = self.kwargs['investment_to_portfolio_id']
+        portfolio = StockPortfolio.objects.get(pk=portfolio_id)
+        if self.request.user == portfolio.stock_portfolio_user:
             return True
         return False
 

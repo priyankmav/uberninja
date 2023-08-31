@@ -26,6 +26,10 @@ class Investment(models.Model):
     investment_units = models.DecimalField(max_digits=12, decimal_places=2)
     investment_price = models.DecimalField(max_digits=8, decimal_places=2)
     date_purchased = models.DateTimeField(default=timezone.now)
+
+    @property
+    def total_price(self):
+        return self.investment_units*self.investment_price
     
     def __str__(self):
         return self.investment_name 
